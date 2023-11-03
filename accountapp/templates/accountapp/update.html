@@ -8,11 +8,11 @@
             <h4>Change Info</h4>
         </div>
         <!--   account앱에 있는 creat로 라우팅 해라     -->
-        <form action="{% url 'accountapp:update' pk=user.pk %}" method="post">
+        <form action="{% url 'accountapp:update' pk=target_user.pk %}" method="post">
             {% csrf_token %}
 <!--            {{ form }}-->
             {% bootstrap_form form %}
-            <input type="submit" class="btn btn-dark rounded-pill col-12 mt-3">
+            <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
         </form>
 
     </div>
