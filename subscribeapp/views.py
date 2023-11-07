@@ -29,3 +29,15 @@ class SubscriptionView(RedirectView):
         return super(SubscriptionView, self).get(request, *args, **kwargs)
 
 
+@method_decorator(login_required, 'get')
+class SubscriptionListView(ListView):
+    model = Article
+    context_object_name = 'article_list'
+    template_name = 'subscribeapp/list.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+        # 유저가 구독하고있는 article 찾기
+        projects = Subscription.objects.filter(user=self.request.user).values_list('project')
+        article_list = Article.objects.filter(project__in=projects)
+        return article_list
