@@ -1,12 +1,11 @@
 from django.http import HttpResponseForbidden
+from commentapp.models import Comment
 
-from articleapp.models import Article
 
-
-def article_ownership_required(func):
+def comment_ownership_required(func):
     def decorated(request, *args, **kwargs):
-        article = Article.objects.get(pk=kwargs['pk'])
-        if not article.writer == request.user:
+        comment = Comment.objects.get(pk=kwargs['pk'])
+        if not comment.writer == request.user:
             return HttpResponseForbidden()
         return func(request, *args, **kwargs)
     return decorated
