@@ -1,4 +1,11 @@
 
+
+@media screen and (max-width:500px) {
+    html {
+        font-size: 13px;
+    }
+}
+
 .pragmatic_logo{
     font-family: 'Lobster', sans-serif;
 
